@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Awareness - Stay Safe Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+
+        nav a:hover {
+            color: #4353FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #4353FF 0%, #3642cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            opacity: 0.95;
+            letter-spacing: -0.01em;
+            animation: fadeInUp 0.8s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666666;
+            margin-bottom: 4rem;
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* Introduction Section */
+        #intro {
+            background: #F7F9FC;
+        }
+
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #333333;
+        }
+
+        .intro-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(67, 83, 255, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid #4353FF;
+        }
+
+        .gallery-caption {
+            padding: 1.5rem;
+        }
+
+        .gallery-caption h3 {
+            color: #4353FF;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .gallery-caption p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .warning-badge {
+            display: inline-block;
+            background: #4353FF;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        /* Comparison Section */
+        #comparison {
+            background: #F7F9FC;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .comparison-card.real {
+            border-top: 4px solid #00C48C;
+        }
+
+        .comparison-card.fake {
+            border-top: 4px solid #FF6B6B;
+        }
+
+        .comparison-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .comparison-card.real h3 {
+            color: #00C48C;
+        }
+
+        .comparison-card.fake h3 {
+            color: #FF6B6B;
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #F0F0F0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #333333;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .comparison-list li:before {
+            content: '✓';
+            color: #00C48C;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .comparison-card.fake .comparison-list li:before {
+            content: '✗';
+            color: #FF6B6B;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Tips Section */
+        #tips {
+            background: white;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, #4353FF 0%, #3642cc 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(67, 83, 255, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(67, 83, 255, 0.35);
+        }
+
+        .tip-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+            letter-spacing: -0.02em;
+        }
+
+        .tip-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .tip-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* References Section */
+        #references {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        #references .section-title {
+            color: white;
+        }
+
+        #references .section-subtitle {
+            color: #999999;
+        }
+
+        .references-list {
+            list-style: none;
+            max-width: 900px;
+            margin: 2rem auto 0;
+        }
+
+        .references-list li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border-left: 3px solid #4353FF;
+            transition: background 0.3s ease;
+        }
+
+        .references-list li:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .references-list strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .references-list a {
+            color: #6B7FFF;
+            text-decoration: none;
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+
+        .references-list a:hover {
+            color: #8B9FFF;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d0d;
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.9rem;
+            color: #999999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#gallery">Examples</a></li>
+            <li><a href="#comparison">Real vs Fake</a></li>
+            <li><a href="#tips">Prevention Tips</a></li>
+            <li><a href="#references">References</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Protect Yourself from Phishing</h1>
+            <p>Learn to identify, avoid, and report phishing scams. Stay informed, stay safe.</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section id="intro">
+        <h2 class="section-title">Understanding Phishing</h2>
+        <p class="section-subtitle">Knowledge is your first line of defense</p>
+        <div class="intro-content">
+            <p>Phishing is a form of cybercrime where attackers impersonate legitimate organizations to deceive individuals into revealing sensitive information such as passwords, credit card numbers, or bank account details. These fraudulent communications typically arrive via email, text message, or phone call, designed to appear trustworthy and urgent.</p>
+            
+            <p>The threat of phishing continues to grow exponentially. Recent studies show that approximately 3.4 billion phishing emails are sent every day, with nearly 1.2% of all emails being malicious attempts. Even more alarming, 36% of all data breaches involve some form of phishing, and 91% of cyberattacks begin with a phishing email. The average cost of a successful phishing attack reached $4.91 million for businesses worldwide in 2023.</p>
+            
+            <p>Phishing poses severe threats to both data privacy and security. When attackers successfully obtain login credentials, they can access personal accounts, steal identities, drain bank accounts, and compromise entire organizational networks. The stolen information is often sold on dark web marketplaces or used to launch more sophisticated attacks. For businesses, a single successful phishing attempt can lead to devastating data breaches, ransomware infections, financial losses, and irreparable damage to reputation and customer trust.</p>
+            
+            <p>Modern phishing attacks have become increasingly sophisticated, utilizing artificial intelligence to craft convincing messages, deepfake technology to impersonate executives, and social engineering tactics that exploit human psychology rather than technical vulnerabilities. Attackers create fake websites that perfectly mirror legitimate ones, use urgent language to bypass critical thinking, and personalize messages with information gathered from social media and data breaches.</p>
+            
+            <p>However, phishing attacks are preventable with proper awareness and vigilance. By understanding common characteristics of phishing attempts, learning to distinguish authentic communications from fraudulent ones, and following cybersecurity best practices, individuals and organizations can significantly reduce their risk. This website provides comprehensive education on identifying phishing threats, real-world examples of common scams, practical prevention tips, and resources to help you stay protected in an increasingly digital world.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">Real Phishing Examples</h2>
+        <p class="section-subtitle">Learn to recognize these common tactics</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23e8f4f8' width='400' height='250'/%3E%3Ctext x='50%25' y='35%25' font-family='Arial' font-size='20' fill='%23c0392b' text-anchor='middle' font-weight='bold'%3EBANK ALERT%3C/text%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='14' fill='%23333' text-anchor='middle'%3EUnusual Activity Detected%3C/text%3E%3Ctext x='50%25' y='65%25' font-family='Arial' font-size='12' fill='%23555' text-anchor='middle'%3EClick here to verify your account%3C/text%3E%3Crect x='140' y='170' width='120' height='30' fill='%23c0392b' rx='5'/%3E%3Ctext x='50%25' y='192' font-family='Arial' font-size='12' fill='white' text-anchor='middle'%3EVERIFY NOW%3C/text%3E%3C/svg%3E" alt="Fake Bank Alert">
+                <div class="gallery-caption">
+                    <h3>Fake Bank Security Alert</h3>
+                    <p><strong>Red Flags:</strong> Creates urgency with "unusual activity" claim, suspicious sender address (not from actual bank domain), generic greeting, grammatical errors, and requests immediate action through an embedded link.</p>
+                    <span class="warning-badge">PHISHING ATTEMPT</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23f0f0f0' width='400' height='250'/%3E%3Ctext x='50%25' y='30%25' font-family='Arial' font-size='18' fill='%232c3e50' text-anchor='middle' font-weight='bold'%3EIT Security Department%3C/text%3E%3Ctext x='50%25' y='45%25' font-family='Arial' font-size='13' fill='%23555' text-anchor='middle'%3EYour password will expire in 24 hours%3C/text%3E%3Ctext x='50%25' y='58%25' font-family='Arial' font-size='11' fill='%23666' text-anchor='middle'%3ETo avoid service interruption,%3C/text%3E%3Ctext x='50%25' y='68%25' font-family='Arial' font-size='11' fill='%23666' text-anchor='middle'%3Eclick below to update your credentials%3C/text%3E%3Crect x='130' y='180' width='140' height='35' fill='%23e67e22' rx='5'/%3E%3Ctext x='50%25' y='205' font-family='Arial' font-size='13' fill='white' text-anchor='middle'%3EUPDATE PASSWORD%3C/text%3E%3C/svg%3E" alt="Password Expiry Scam">
+                <div class="gallery-caption">
+                    <h3>Password Expiration Scam</h3>
+                    <p><strong>Red Flags:</strong> False sense of urgency, threats of service disruption, requests credentials via email link (legitimate IT departments never do this), impersonal language, and suspicious sender address.</p>
+                    <span class="warning-badge">PHISHING ATTEMPT</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23fff9e6' width='400' height='250'/%3E%3Ctext x='50%25' y='25%25' font-family='Arial' font-size='22' fill='%23f39c12' text-anchor='middle' font-weight='bold'%3E🎉 CONGRATULATIONS! 🎉%3C/text%3E%3Ctext x='50%25' y='40%25' font-family='Arial' font-size='14' fill='%23333' text-anchor='middle'%3EYou've won a $500 Amazon Gift Card!%3C/text%3E%3Ctext x='50%25' y='53%25' font-family='Arial' font-size='11' fill='%23666' text-anchor='middle'%3EClick the link below to claim your prize%3C/text%3E%3Ctext x='50%25' y='63%25' font-family='Arial' font-size='11' fill='%23666' text-anchor='middle'%3Ebefore it expires in 2 hours!%3C/text%3E%3Crect x='120' y='175' width='160' height='35' fill='%23e74c3c' rx='5'/%3E%3Ctext x='50%25' y='200' font-family='Arial' font-size='13' fill='white' text-anchor='middle' font-weight='bold'%3ECLAIM YOUR PRIZE NOW%3C/text%3E%3C/svg%3E" alt="Prize Giveaway Scam">
+                <div class="gallery-caption">
+                    <h3>Fake Prize Giveaway</h3>
+                    <p><strong>Red Flags:</strong> Too-good-to-be-true offer, artificial time pressure, you didn't enter any contest, requests personal information to "claim" prize, suspicious URL that doesn't match the supposed company.</p>
+                    <span class="warning-badge">PHISHING ATTEMPT</span>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23e8f5e9' width='400' height='250'/%3E%3Ctext x='50%25' y='25%25' font-family='Arial' font-size='18' fill='%232e7d32' text-anchor='middle' font-weight='bold'%3EJob Opportunity%3C/text%3E%3Ctext x='50%25' y='38%25' font-family='Arial' font-size='13' fill='%23333' text-anchor='middle'%3EDear Applicant,%3C/text%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='11' fill='%23555' text-anchor='middle'%3EYou have been selected for a%3C/text%3E%3Ctext x='50%25' y='60%25' font-family='Arial' font-size='11' fill='%23555' text-anchor='middle'%3Eremote position earning $5000/month%3C/text%3E%3Ctext x='50%25' y='72%25' font-family='Arial' font-size='11' fill='%23555' text-anchor='middle'%3EProvide your SSN and bank details to%3C/text%3E%3Ctext x='50%25' y='82%25' font-family='Arial' font-size='11' fill='%23555' text-anchor='middle'%3Ecomplete the hiring process%3C/text%3E%3Crect x='140' y='190' width='120' height='30' fill='%232e7d32' rx='5'/%3E%3Ctext x='50%25' y='212' font-family='Arial' font-size='12' fill='white' text-anchor='middle'%3EAPPLY NOW%3C/text%3E%3C/svg%3E" alt="Fake Job Offer">
+                <div class="gallery-caption">
+                    <h3>Fraudulent Job Offer</h3>
+                    <p><strong>Red Flags:</strong> Unsolicited job offer, unrealistic salary, requests sensitive personal information (SSN, bank details) upfront, no legitimate interview process, generic greeting, and promises payment before work begins.</p>
+                    <span class="warning-badge">PHISHING ATTEMPT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison">
+        <h2 class="section-title">Real vs Fake: Spot the Difference</h2>
+        <p class="section-subtitle">Learn what to look for in legitimate communications</p>
+        <div class="comparison-container">
+            <div class="comparison-card real">
+                <h3>✓ Legitimate Email Characteristics</h3>
+                <ul class="comparison-list">
+                    <li>Sender address matches official company domain (e.g., @company.com)</li>
+                    <li>Personalized greeting using your actual name</li>
+                    <li>Professional formatting with no spelling or grammar errors</li>
+                    <li>No urgent demands for immediate action or threats</li>
+                    <li>Links direct to official HTTPS websites with correct URLs</li>
+                    <li>Doesn't request sensitive information via email</li>
+                    <li>Contains official company logos and branding</li>
+                    <li>Provides alternative contact methods (phone, official website)</li>
+                    <li>Expected communication based on your relationship with the sender</li>
+                    <li>You can verify by contacting the company directly through official channels</li>
+                </ul>
+            </div>
+
+            <div class="comparison-card fake">
+                <h3>✗ Phishing Email Warning Signs</h3>
+                <ul class="comparison-list">
+                    <li>Suspicious sender address with slight misspellings (e.g., @companyy.com, @company-secure.com)</li>
+                    <li>Generic greetings like "Dear Customer" or "Dear User"</li>
+                    <li>Poor grammar, spelling mistakes, or awkward phrasing</li>
+                    <li>Creates false urgency: "Act now!" "Account will be suspended!" "Limited time!"</li>
+                    <li>Links show different URLs when you hover over them</li>
+                    <li>Requests passwords, SSN, credit card numbers, or bank details</li>
+                    <li>Low-quality or distorted logos and images</li>
+                    <li>No legitimate contact information provided</li>
+                    <li>Unexpected or unsolicited message from unknown sender</li>
+                    <li>Offers that seem too good to be true (prizes, jobs, money)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips">
+        <h2 class="section-title">10 Essential Phishing Prevention Tips</h2>
+        <p class="section-subtitle">Protect yourself with these proven strategies</p>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-number">01</div>
+                <h3>Verify Before You Trust</h3>
+                <p>Always verify the sender's identity through independent channels. If you receive a suspicious email claiming to be from your bank, call the bank directly using the number on their official website or your bank card—never use contact information from the email itself.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">02</div>
+                <h3>Hover Over Links</h3>
+                <p>Before clicking any link, hover your mouse over it to see the actual URL destination. Phishing emails often disguise malicious links with legitimate-looking text. If the URL looks suspicious or doesn't match the supposed sender's domain, don't click it.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">03</div>
+                <h3>Enable Multi-Factor Authentication</h3>
+                <p>Add an extra layer of security to your accounts by enabling multi-factor authentication (MFA). Even if attackers steal your password through phishing, they won't be able to access your account without the second authentication factor.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">04</div>
+                <h3>Check for HTTPS and Security Certificates</h3>
+                <p>Before entering sensitive information on any website, ensure the URL begins with "https://" and displays a padlock icon. Legitimate websites use SSL certificates for encryption. However, note that some phishing sites also use HTTPS, so this shouldn't be your only verification method.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">05</div>
+                <h3>Be Skeptical of Urgency</h3>
+                <p>Phishers create artificial urgency to prevent you from thinking critically. Legitimate organizations rarely demand immediate action through email. If a message pressures you to act quickly or threatens consequences, it's likely a scam. Take time to verify before responding.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">06</div>
+                <h3>Keep Software Updated</h3>
+                <p>Regularly update your operating system, web browsers, and security software. Updates often include patches for security vulnerabilities that phishers exploit. Enable automatic updates whenever possible to ensure you're always protected against the latest threats.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">07</div>
+                <h3>Use Email Filters and Anti-Phishing Tools</h3>
+                <p>Install browser extensions and email filters that detect and block phishing attempts. Most modern email services include spam filters, but additional anti-phishing tools provide extra protection by identifying malicious websites and suspicious emails before they reach you.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">08</div>
+                <h3>Never Share Sensitive Information via Email</h3>
+                <p>Legitimate organizations will never ask for passwords, Social Security numbers, credit card details, or banking information through email. If you receive such a request, it's a phishing attempt. Always refuse to provide sensitive data through email or text messages.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">09</div>
+                <h3>Report Phishing Attempts</h3>
+                <p>Report phishing emails to your email provider and the impersonated organization. Forward phishing emails to the Anti-Phishing Working Group at reportphishing@apwg.org. Reporting helps protect others and contributes to fighting cybercrime on a larger scale.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">10</div>
+                <h3>Educate Yourself Continuously</h3>
+                <p>Phishing tactics constantly evolve, becoming more sophisticated over time. Stay informed about the latest phishing techniques by following cybersecurity news, participating in security awareness training, and sharing knowledge with friends and colleagues. Education is your strongest defense.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references">
+        <h2 class="section-title">References & Resources</h2>
+        <p class="section-subtitle">Credible sources for further information</p>
+        <ul class="references-list">
+            <li>
+                <strong>Cybersecurity & Infrastructure Security Agency (CISA)</strong><br>
+                "Teach Employees to Avoid Phishing"<br>
+                <a href="https://www.cisa.gov/secure-our-world/teach-employees-avoid-phishing" target="_blank">https://www.cisa.gov/secure-our-world/teach-employees-avoid-phishing</a>
+            </li>
+            <li>
+                <strong>Microsoft Security</strong><br>
+                "Protect Yourself from Phishing"<br>
+                <a href="https://support.microsoft.com/en-us/windows/protect-yourself-from-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44" target="_blank">https://support.microsoft.com/en-us/windows/protect-yourself-from-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44</a>
+            </li>
+            <li>
+                <strong>Norton Security</strong><br>
+                "10 Real Phishing Email Examples - Scams"<br>
+                <a href="https://us.norton.com/blog/online-scams/phishing-email-examples" target="_blank">https://us.norton.com/blog/online-scams/phishing-email-examples</a>
+            </li>
+            <li>
+                <strong>Hook Security</strong><br>
+                "50+ Phishing Email Examples"<br>
+                <a href="https://www.hooksecurity.co/phishing-email-examples" target="_blank">https://www.hooksecurity.co/phishing-email-examples</a>
+            </li>
+            <li>
+                <strong>Zscaler ThreatLabz</strong><br>
+                "2024 Phishing Report: Phishing Attacks Rise 58% Year Over Year"<br>
+                <a href="https://www.zscaler.com/blogs/security-research/phishing-attacks-rise-58-year-ai-threatlabz-2024-phishing-report" target="_blank">https://www.zscaler.com/blogs/security-research/phishing-attacks-rise-58-year-ai-threatlabz-2024-phishing-report.
